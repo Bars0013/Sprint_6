@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 class HomePageHeaderLocators:
     """Шапка сайта"""
-    LOGO_YANDEX = (By.XPATH, ".//a[@class = 'Header_LogoYandex__3TSOI']")
+    LOGO_YANDEX = (By.XPATH, ".//a[contains(@class, 'LogoYandex')]")
     LOGO_SCOOTER = (By.XPATH, ".//a[@class = 'Header_LogoScooter__3lsAR']")
     ORDER_BUTTON = (By.XPATH, "(.//button[text() = 'Заказать'])[1]")
     ORDER_STATUS_BUTTON = (By.XPATH, ".//button[text() = 'Статус заказа']")

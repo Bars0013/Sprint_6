@@ -1,17 +1,19 @@
-import time
 import allure
 import pytest
 
 from conftest import driver
 from data import Questions, Urls
+from locators.dzen_page_locators import DzenPageLocators
 from locators.home_page_locators import HomePageLocators
 from pages.home_page import HomePage, HomePageHeader
 from pages.dzen_page import DzenPage
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class TestMainPage:
 
-    @allure.title('Тест проверки перехода на главную страницу веб-приложенияпо клику на логотип "Самокат"')
+    @allure.title('Тест проверки перехода на главную страницу веб-приложения по клику на логотип "Самокат"')
     @allure.description('''1)Кликаем на кнопку "Заказать"
                         2)Кликаем на логотип "Самокат"
                         3)Сравниваем текущий URL с ожидаемым и отображение надписи - "Учебный проект"''')
@@ -32,7 +34,7 @@ class TestMainPage:
         dzen_page = DzenPage(driver)
         header_page.yandex_logo_click()
         header_page.go_to_new_tab()
-        time.sleep(5)
+        WebDriverWait(driver, 5).until(EC.presence_of_element_located(DzenPageLocators.MAIN_BUTTON_DZEN))
         current_url = header_page.get_current_url()
         assert current_url == Urls.DZEN_URL and dzen_page.check_element_main_button()
 
